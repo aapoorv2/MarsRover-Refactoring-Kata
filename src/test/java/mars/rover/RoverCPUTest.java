@@ -9,7 +9,7 @@ class RoverCPUTest {
     void testChangingDirectionToWESTWhenRotatingLEFTFromNORTH() {
         RoverCPU cpu = new RoverCPU();
 
-        Direction direction = cpu.compute(Direction.NORTH, Instruction.LEFT);
+        Direction direction = cpu.computeDirection(Direction.NORTH, Instruction.LEFT);
 
         assertEquals(Direction.WEST, direction);
     }
@@ -17,7 +17,7 @@ class RoverCPUTest {
     void testChangingDirectionToSOUTHWhenRotatingLEFTFromWEST() {
         RoverCPU cpu = new RoverCPU();
 
-        Direction direction = cpu.compute(Direction.WEST, Instruction.LEFT);
+        Direction direction = cpu.computeDirection(Direction.WEST, Instruction.LEFT);
 
         assertEquals(Direction.SOUTH, direction);
     }
@@ -25,7 +25,7 @@ class RoverCPUTest {
     void testChangingDirectionToEASTWhenRotatingLEFTFromSOUTH() {
         RoverCPU cpu = new RoverCPU();
 
-        Direction direction = cpu.compute(Direction.SOUTH, Instruction.LEFT);
+        Direction direction = cpu.computeDirection(Direction.SOUTH, Instruction.LEFT);
 
         assertEquals(Direction.EAST, direction);
     }
@@ -33,7 +33,7 @@ class RoverCPUTest {
     void testChangingDirectionToNORTHWhenRotatingLEFTFromEAST() {
         RoverCPU cpu = new RoverCPU();
 
-        Direction direction = cpu.compute(Direction.EAST, Instruction.LEFT);
+        Direction direction = cpu.computeDirection(Direction.EAST, Instruction.LEFT);
 
         assertEquals(Direction.NORTH, direction);
     }
@@ -41,7 +41,7 @@ class RoverCPUTest {
     void testChangingDirectionToEASTWhenRotatingRIGHTFromNORTH() {
         RoverCPU cpu = new RoverCPU();
 
-        Direction direction = cpu.compute(Direction.NORTH, Instruction.RIGHT);
+        Direction direction = cpu.computeDirection(Direction.NORTH, Instruction.RIGHT);
 
         assertEquals(Direction.EAST, direction);
     }
@@ -49,7 +49,7 @@ class RoverCPUTest {
     void testChangingDirectionToSOUTHWhenRotatingRIGHTFromEAST() {
         RoverCPU cpu = new RoverCPU();
 
-        Direction direction = cpu.compute(Direction.EAST, Instruction.RIGHT);
+        Direction direction = cpu.computeDirection(Direction.EAST, Instruction.RIGHT);
 
         assertEquals(Direction.SOUTH, direction);
     }
@@ -57,7 +57,7 @@ class RoverCPUTest {
     void testChangingDirectionToWESTWhenRotatingRIGHTFromSOUTH() {
         RoverCPU cpu = new RoverCPU();
 
-        Direction direction = cpu.compute(Direction.SOUTH, Instruction.RIGHT);
+        Direction direction = cpu.computeDirection(Direction.SOUTH, Instruction.RIGHT);
 
         assertEquals(Direction.WEST, direction);
     }
@@ -65,9 +65,27 @@ class RoverCPUTest {
     void testChangingDirectionToNORTHWhenRotatingRIGHTFromWEST() {
         RoverCPU cpu = new RoverCPU();
 
-        Direction direction = cpu.compute(Direction.WEST, Instruction.RIGHT);
+        Direction direction = cpu.computeDirection(Direction.WEST, Instruction.RIGHT);
 
         assertEquals(Direction.NORTH, direction);
+    }
+    @Test
+    void testComputingMovementInTheXAxis() {
+        RoverCPU cpu = new RoverCPU();
+
+        assertEquals(0, cpu.computeXAxisMovement(Direction.NORTH));
+        assertEquals(0, cpu.computeXAxisMovement(Direction.SOUTH));
+        assertEquals(1, cpu.computeXAxisMovement(Direction.EAST));
+        assertEquals(-1, cpu.computeXAxisMovement(Direction.WEST));
+    }
+    @Test
+    void testComputingMovementInTheYAxis() {
+        RoverCPU cpu = new RoverCPU();
+
+        assertEquals(1, cpu.computeYAxisMovement(Direction.NORTH));
+        assertEquals(-1, cpu.computeYAxisMovement(Direction.SOUTH));
+        assertEquals(0, cpu.computeYAxisMovement(Direction.EAST));
+        assertEquals(0, cpu.computeYAxisMovement(Direction.WEST));
     }
 
 }
