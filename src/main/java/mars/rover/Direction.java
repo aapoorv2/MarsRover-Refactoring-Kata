@@ -10,6 +10,10 @@ public enum Direction {
         Direction turnRight() {
             return EAST;
         }
+        @Override
+        String toLabel() {
+            return "N";
+        }
     },
     SOUTH {
         @Override
@@ -19,6 +23,10 @@ public enum Direction {
         @Override
         Direction turnRight() {
             return WEST;
+        }
+        @Override
+        String toLabel() {
+            return "S";
         }
     },
     EAST{
@@ -30,6 +38,10 @@ public enum Direction {
         Direction turnRight() {
             return SOUTH;
         }
+        @Override
+        String toLabel() {
+            return "E";
+        }
     },
     WEST{
         @Override
@@ -40,7 +52,12 @@ public enum Direction {
         Direction turnRight() {
             return NORTH;
         }
+        @Override
+        String toLabel() {
+            return "W";
+        }
     };
     abstract Direction turnLeft();
     abstract Direction turnRight();
+    abstract String toLabel();
 }

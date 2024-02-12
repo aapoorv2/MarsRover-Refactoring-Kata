@@ -21,7 +21,7 @@ class RoverTest {
     void testMovingARoverInPositiveXDirection() {
         Rover rover = new Rover(0, 0, Direction.EAST);
 
-        rover.move(new ArrayList<>(Arrays.asList(Instruction.MOVE, Instruction.MOVE)));
+        rover.move("MM");
 
         assertEquals("2 0 E", rover.position());
     }
@@ -29,7 +29,7 @@ class RoverTest {
     void testMovingARoverInPositiveYDirection() {
         Rover rover = new Rover(0, 0, Direction.NORTH);
 
-        rover.move(new ArrayList<>(Arrays.asList(Instruction.MOVE)));
+        rover.move("M");
 
         assertEquals("0 1 N", rover.position());
     }
@@ -37,7 +37,7 @@ class RoverTest {
     void testMovingARoverInNegativeYDirection() {
         Rover rover = new Rover(1, 1, Direction.SOUTH);
 
-        rover.move(new ArrayList<>(Arrays.asList(Instruction.MOVE)));
+        rover.move("M");
 
         assertEquals("1 0 S", rover.position());
     }
@@ -45,7 +45,7 @@ class RoverTest {
     void testMovingARoverInNegativeXDirection() {
         Rover rover = new Rover(1, 1, Direction.WEST);
 
-        rover.move(new ArrayList<>(Arrays.asList(Instruction.MOVE)));
+        rover.move("M");
 
         assertEquals("0 1 W", rover.position());
     }
@@ -54,7 +54,7 @@ class RoverTest {
         Rover rover = new Rover(1, 1, Direction.WEST);
 
         assertThrows(OutOfPlateauException.class, () -> {
-            rover.move(new ArrayList<>(Arrays.asList(Instruction.MOVE, Instruction.MOVE)));
+            rover.move("MM");
         });
 
     }
@@ -62,7 +62,7 @@ class RoverTest {
     void testRotatingARoverRight() {
         Rover rover = new Rover(0, 0, Direction.NORTH);
 
-        rover.move(new ArrayList<>(Arrays.asList(Instruction.RIGHT)));
+        rover.move("R");
 
         assertEquals("0 0 E", rover.position());
     }
@@ -70,28 +70,23 @@ class RoverTest {
     void testRotatingARoverLeft() {
         Rover rover = new Rover(0, 0, Direction.NORTH);
 
-        rover.move(new ArrayList<>(Arrays.asList(Instruction.LEFT)));
+        rover.move("L");
 
         assertEquals("0 0 W", rover.position());
     }
     @Test
     void acceptance_test_1() {
         Rover rover = new Rover(1, 2, Direction.NORTH);
-        List<Instruction> instructions = new ArrayList<>(Arrays.asList(Instruction.LEFT, Instruction.MOVE, Instruction.LEFT,
-        Instruction.MOVE, Instruction.LEFT, Instruction.MOVE, Instruction.LEFT, Instruction.MOVE, Instruction.MOVE));
 
-        rover.move(instructions);
+        rover.move("LMLMLMLMM");
 
         assertEquals("1 3 N", rover.position());
     }
     @Test
     void acceptance_test_2() {
         Rover rover = new Rover(3, 3, Direction.EAST);
-        List<Instruction> instructions = new ArrayList<>(Arrays.asList(Instruction.MOVE, Instruction.MOVE, Instruction.RIGHT,
-                Instruction.MOVE, Instruction.MOVE, Instruction.RIGHT, Instruction.MOVE, Instruction.RIGHT, Instruction.RIGHT,
-                Instruction.MOVE));
 
-        rover.move(instructions);
+        rover.move("MMRMMRMRRM");
 
         assertEquals("5 1 E", rover.position());
     }
